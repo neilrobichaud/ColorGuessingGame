@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body onload="dogame()" >
+<script>
+var colorlist = ["red", "yellow", "blue", "green", "orange"];
+var randomnum = Math.floor((Math.random()*4+1));
+var chosencolor = colorlist[randomnum];
+var finished = false;
+var count = 0;
+
+
+var dogame = function(){	
+	while(!finished){
+		currentguess = prompt("Guess a color from red, yellow, blue, green, orange");
+		finished = checkguess(currentguess);
+		count++;
+	}
+}
+
+
+var checkguess = function(guessed) {	
+	if (colorlist.indexOf(guessed)==-1){
+		alert('please guess a color in the list');
+		return false;
+	}
+	else if (guessed < chosencolor) {
+		alert('guess higher');
+		return false;
+	}
+	else if (guessed>chosencolor){
+		alert('guess lower');
+		return false;
+	}
+	else if (guessed == chosencolor){
+		var myBody=document.getElementsByTagName("body")[0];
+		myBody.style.background=guessed;
+		alert('congratulations the correct color was ' + chosencolor + ' it took you ' + count +' guesses.');
+		
+		
+		return true;
+	}
+	else{ alert('unexpected break');}
+	}
+	</script>
+</body>
+</html>
